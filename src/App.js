@@ -12,12 +12,22 @@ export default function App() {
     {
       id: 13345,
       title: "Bolognese",
-      category: "meat"
+      category: "veggi"
     },
     {
       id: 12335,
       title: "Sahne Torte",
-      category: "meat"
+      category: "vegan"
+    },
+    {
+      id: 12335,
+      title: "Sahne Torte",
+      category: "vegan"
+    },
+    {
+      id: 12335,
+      title: "Sahne Torte",
+      category: "vegan"
     }
   ];
 
@@ -34,9 +44,22 @@ export default function App() {
         </ul>
       </Flex>
       <div className="main">
-        {list.map((item) => {
-          return <div>{item.title}</div>;
-        })}
+        <Grid templateColumns="1fr 1fr 1fr 1fr 1fr" columnGap="20px">
+          {list.map((item) => {
+            return (
+              <Flex
+                key="{item.id}"
+                boxShadow="lg"
+                rounded="lg"
+                flexDir="column"
+                alignItems="center"
+              >
+                <p>{item.title}</p>
+                <p>{item.category}</p>
+              </Flex>
+            );
+          })}
+        </Grid>
       </div>
     </Grid>
   );
