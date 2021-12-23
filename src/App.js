@@ -1,18 +1,30 @@
 import "./styles.css";
-import { useState } from "react";
-import { Flex, Grid, Text, Heading } from "@chakra-ui/react";
+import {
+  Flex,
+  Grid,
+  Text,
+  Heading,
+  Container,
+  IconButton
+} from "@chakra-ui/react";
+import { AddIcon, SettingsIcon } from "@chakra-ui/icons";
 
 export default function App() {
   const list = [
     {
       id: 12345,
-      title: "meat balls",
+      title: "Meat Balls",
       category: "meat"
     },
     {
       id: 13345,
       title: "Bolognese",
       category: "veggi"
+    },
+    {
+      id: 12335,
+      title: "Sahne Torte",
+      category: "vegan"
     },
     {
       id: 12335,
@@ -44,22 +56,57 @@ export default function App() {
         </ul>
       </Flex>
       <div className="main">
-        <Grid templateColumns="1fr 1fr 1fr 1fr 1fr" columnGap="20px">
-          {list.map((item) => {
-            return (
-              <Flex
-                key="{item.id}"
-                boxShadow="lg"
-                rounded="lg"
-                flexDir="column"
-                alignItems="center"
-              >
-                <p>{item.title}</p>
-                <p>{item.category}</p>
+        <Container maxW="container.lg">
+          <Flex flexDir="column">
+            <Flex py="10" justifyContent="space-between" alignItems="baseline">
+              <Heading>Recipes</Heading>
+              <Flex>
+                <IconButton
+                  mr="5"
+                  isRound="true"
+                  aria-label="configuration"
+                  icon={<SettingsIcon />}
+                />
+                <IconButton
+                  isRound="true"
+                  aria-label="add recipe"
+                  icon={<AddIcon />}
+                />
               </Flex>
-            );
-          })}
-        </Grid>
+            </Flex>
+            <Flex flexWrap="wrap" gap="20px" justifyContent="center">
+              {list.map((item) => {
+                return (
+                  <Flex
+                    key="{item.id}"
+                    maxWidth="180px"
+                    minWidth="180px"
+                    flex="30%"
+                    boxShadow="xl"
+                    rounded="lg"
+                    flexDir="column"
+                    p="5"
+                    alignItems="center"
+                    bg="white"
+                  >
+                    <Heading as="h3" size="md" mb="2">
+                      {item.title}
+                    </Heading>
+                    <Text
+                      casing="uppercase"
+                      letterSpacing="0.05rem"
+                      fontWeight="medium"
+                      fontSize="xs"
+                      color="gray.500"
+                    >
+                      {item.category}
+                    </Text>
+                  </Flex>
+                );
+              })}
+            </Flex>
+          </Flex>
+        </Container>
       </div>
     </Grid>
   );
